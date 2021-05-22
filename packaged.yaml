@@ -6,6 +6,11 @@ Description: 'junction-server
 
   '
 Globals:
+  Api:
+    Cors:
+      AllowMethods: '''OPTIONS, HEAD, POST, GET, PUT, DELETE'''
+      AllowHeaders: '''*'''
+      AllowOrigin: '''*'''
   Function:
     Timeout: 3
 Metadata:
@@ -23,7 +28,7 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://junction-sam-bucket/c6ce8fa8b5a97dd022ecd006536eb5a4
+      CodeUri: s3://junction-sam-bucket/763852498910252da72520081292a861
       Handler: app.lambda_handler
       Runtime: python3.7
       Events:
@@ -32,12 +37,6 @@ Resources:
           Properties:
             Path: /hello
             Method: get
-      Cors:
-        AllowMethods: "'OPTIONS, HEAD, POST, GET, PUT, DELETE'"
-        AllowHeaders: "'*'"
-        AllowOrigin: "'*'"
-        MaxAge: "'600'"
-        AllowCredentials: True
 Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function

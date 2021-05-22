@@ -39,4 +39,9 @@ def lambda_handler(event, context):
             "message": "hello world",
             # "location": ip.text.replace("\n", "")
         }),
+        "headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Allow-Methods": "OPTIONS, HEAD, POST, GET, PUT, DELETE",
+        },
     }
