@@ -25,8 +25,8 @@ jobs:
       - name: package sam
         run: |
           sam package \
-            --template-file template.yml \
-            --output-template-file package.yml \
+            --template-file template.yaml \
+            --output-template-file package.yaml \
             --s3-bucket junction-sam-bucket
         env:
           SAM_CLI_TELEMETRY: 0
@@ -34,6 +34,6 @@ jobs:
       - name: deploy sam
         run: |
           sam deploy \
-            --template-file package.yml \
+            --template-file package.yaml \
             --stack-name junction-server \
             --capabilities CAPABILITY_IAM
