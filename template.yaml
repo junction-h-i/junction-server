@@ -28,17 +28,42 @@ Metadata:
 
 Resources:
   HelloWorldFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: hello_world/
       Handler: app.lambda_handler
       Runtime: python3.7
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /hello
             Method: get
+
+  SignupWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: junction_app/
+      Handler: handler.signup.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /signup
+            Method: post
+  SigninWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: junction_app/
+      Handler: handler.signin.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /signin
+            Method: post
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

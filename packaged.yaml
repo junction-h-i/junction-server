@@ -28,7 +28,7 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://junction-sam-bucket/763852498910252da72520081292a861
+      CodeUri: s3://junction-sam-bucket/ccb8819a047efad2c785c659ecdea474
       Handler: app.lambda_handler
       Runtime: python3.7
       Events:
@@ -37,6 +37,30 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+  SignupWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://junction-sam-bucket/e55590506603c3dd5eb996b94ddf68ab
+      Handler: handler.signup.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /signup
+            Method: post
+  SigninWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://junction-sam-bucket/e55590506603c3dd5eb996b94ddf68ab
+      Handler: handler.signin.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /signin
+            Method: post
 Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
