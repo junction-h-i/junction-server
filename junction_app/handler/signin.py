@@ -3,7 +3,7 @@ import json
 from sqlalchemy.orm import Session
 import jwt
 
-from junction_app import SECRET_KEY
+from secret import SECRET_KEY
 from db.user import UserModel
 from handler import response
 
