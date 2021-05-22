@@ -65,7 +65,7 @@ Resources:
             Path: /signin
             Method: post
 
-  CreatCardFunction:
+  CreateCardFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: junction_app/
@@ -77,6 +77,18 @@ Resources:
           Properties:
             Path: /card
             Method: post
+  DeleteCardFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: junction_app/
+      Handler: handler.delete_card.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /cards/{card_id}
+            Method: delete
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
