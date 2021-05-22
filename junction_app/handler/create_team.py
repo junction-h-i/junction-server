@@ -3,6 +3,7 @@ import json
 from sqlalchemy.orm import Session
 
 from db.team import TeamModel
+from db.user_team_mapping import UserTeamMappingModel
 from handler import response, get_user_id_from_header
 
 
@@ -21,7 +22,9 @@ def lambda_handler(event: dict, context):
 
     session = Session()
 
-    session.add(TeamModel(team_name, password, goal_minute))
+    team = TeamModel(team_name, password, goal_minute)
+    session.add(team)
+    session.add(UserTeamMappingModel(user_id, team.team_id))
     session.commit()
 
     return response(201)
