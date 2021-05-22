@@ -36,4 +36,5 @@ jobs:
           sam deploy \
             --template-file package.yaml \
             --stack-name junction-server \
-            --capabilities CAPABILITY_IAM
+            --capabilities CAPABILITY_IAM \
+            --confirm-changeset

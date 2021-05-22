@@ -33,7 +33,7 @@ Resources:
             Path: /hello
             Method: get
       Cors:
-        AllowMethods: "'OPTIONS, POST, GET, PUT, DELETE'"
+        AllowMethods: "'OPTIONS, HEAD, POST, GET, PUT, DELETE'"
         AllowHeaders: "'*'"
         AllowOrigin: "'*'"
         MaxAge: "'600'"
