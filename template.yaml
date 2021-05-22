@@ -150,6 +150,18 @@ Resources:
           Properties:
             Path: /cards/{team_name}/start
             Method: post
+  EndCardTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: junction_app/
+      Handler: handler.end_card_task.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /cards/{team_name}/end
+            Method: post
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
