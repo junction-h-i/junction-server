@@ -1,0 +1,37 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 50
+
+      - name: setup sam
+        uses: aws-actions/setup-sam@v1
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: package sam
+        run: |
+          sam package \
+            --template-file template.yml \
+            --output-template-file package.yml \
+            --s3-bucket junction-sam-bucket
+
+      - name: deploy sam
+        run: |
+          sam deploy \
+            --template-file package.yml \
+            --stack-name junction-server \
+            --capabilities CAPABILITY_IAM
