@@ -89,6 +89,18 @@ Resources:
           Properties:
             Path: /cards/{card_id}
             Method: delete
+  ListCardsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: junction_app/
+      Handler: handler.list_cards.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /cards
+            Method: get
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
