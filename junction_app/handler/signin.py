@@ -1,5 +1,11 @@
-from handler import response
 import json
+
+from sqlalchemy.orm import Session
+import jwt
+
+from junction_app import SECRET_KEY
+from db.user import UserModel
+from handler import response
 
 
 def lambda_handler(event: dict, context):
@@ -10,4 +16,15 @@ def lambda_handler(event: dict, context):
     if None in [username, password]:
         return response(400)
 
-    return response(201, {"username": username, "pw": password})
+    session = Session()
+    user = session.query(UserModel). \
+        filter(UserModel.username == username). \
+        filter(UserModel.password == password). \
+        one_or_none()
+
+    if user is None:
+        return response(400)
+
+    access_token = jwt.encode({"user_id": user.user_id}, SECRET_KEY, algorithm="HS256")
+
+    return response(201, {"access_token": access_token})
