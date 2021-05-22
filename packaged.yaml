@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'junction-server
+
+  Sample SAM Template for junction-server
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: junction-server
+    Description: hello world
+    Author: Sangmin Out
+    ReadmeUrl: s3://junction-sam-bucket/1f9ba7f91dec128d5213ff4cdbe46d3f
+    Labels:
+    - tests
+    HomePageUrl: https://junction.sangmin.in
+    SemanticVersion: '0.0.1'
+    SourceCodeUrl: https://github.com/junction-h-i/junction-server
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://junction-sam-bucket/c6ce8fa8b5a97dd022ecd006536eb5a4
+      Handler: app.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+  HelloWorldFunction:
+    Description: Hello World Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunction
+      - Arn
+  HelloWorldFunctionIamRole:
+    Description: Implicit IAM Role created for Hello World function
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunctionRole
+      - Arn
