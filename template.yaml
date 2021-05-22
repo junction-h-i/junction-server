@@ -126,6 +126,18 @@ Resources:
           Properties:
             Path: /team/{team_name}/join
             Method: post
+  GetGameStatusFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: junction_app/
+      Handler: handler.get_game_status.lambda_handler
+      Runtime: python3.7
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /team/{team_name}
+            Method: get
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
