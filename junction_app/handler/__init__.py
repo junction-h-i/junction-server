@@ -1,3 +1,4 @@
+from typing import Optional
 import json
 
 import jwt
@@ -22,8 +23,8 @@ def response(response_code: int, body=None, header=None) -> dict:
     }
 
 
-def get_user_id_from_header(headers: dict) -> int:
+def get_user_id_from_header(headers: dict) -> Optional[int]:
     token = headers.get("Authorization", "").replace("Bearer ", "")
 
     t = jwt.decode(token, SECRET_KEY, algorithms="HS256")
-    return t["user_id"]
+    return t.get("user_id")

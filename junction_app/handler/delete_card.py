@@ -10,6 +10,9 @@ def lambda_handler(event: dict, context):
         return response(400)
 
     user_id = get_user_id_from_header(event.get("headers", {}))
+    if user_id is None:
+        return response(403)
+
     session = Session()
 
     card = session.query(CardModel).filter(
