@@ -20,7 +20,7 @@ def lambda_handler(event: dict, context):
         return response(403)
 
     session = Session()
-    team = session.query(TeamModel).filter(TeamModel.team_name == team_name).one_ore_none()
+    team = session.query(TeamModel).filter(TeamModel.team_name == team_name).one_or_none()
     if team is None:
         response(404, {"message": "no team"})
 
