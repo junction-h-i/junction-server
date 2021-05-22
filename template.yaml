@@ -12,8 +12,6 @@ Globals:
       AllowMethods: "'OPTIONS, HEAD, POST, GET, PUT, DELETE'"
       AllowHeaders: "'*'"
       AllowOrigin: "'*'"
-      MaxAge: "'600'"
-      AllowCredentials: True
   Function:
     Timeout: 3
 
