@@ -148,7 +148,7 @@ Resources:
         HelloWorld:
           Type: Api
           Properties:
-            Path: /cards/{team_name}/start
+            Path: /cards/{card_id}/start
             Method: post
   EndCardTaskFunction:
     Type: AWS::Serverless::Function
@@ -160,7 +160,7 @@ Resources:
         HelloWorld:
           Type: Api
           Properties:
-            Path: /cards/{team_name}/end
+            Path: /cards/{card_id}/end
             Method: post
 
 Outputs:
