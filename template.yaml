@@ -7,6 +7,13 @@ Description: >
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
+  Api:
+    Cors:
+      AllowMethods: "'OPTIONS, HEAD, POST, GET, PUT, DELETE'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
+      MaxAge: "'600'"
+      AllowCredentials: True
   Function:
     Timeout: 3
 
@@ -34,12 +41,6 @@ Resources:
           Properties:
             Path: /hello
             Method: get
-      Cors:
-        AllowMethods: "'OPTIONS, HEAD, POST, GET, PUT, DELETE'"
-        AllowHeaders: "'*'"
-        AllowOrigin: "'*'"
-        MaxAge: "'600'"
-        AllowCredentials: True
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
