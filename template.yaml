@@ -34,6 +34,12 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+      Cors:
+        AllowMethods: "'OPTIONS, HEAD, POST, GET, PUT, DELETE'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+        MaxAge: "'600'"
+        AllowCredentials: True
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
