@@ -21,7 +21,8 @@ def lambda_handler(event: dict, context):
 
     session = Session()
 
-    session.add(CardModel(user_id, goal_focus_minute, color, content))
+    card = CardModel(user_id, goal_focus_minute, color, content)
+    session.add(card)
     session.commit()
 
-    return response(201)
+    return response(201, {"card_id": card.card_id})
