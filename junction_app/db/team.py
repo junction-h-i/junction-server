@@ -11,6 +11,7 @@ class TeamModel(Base):
     team_name = Column(VARCHAR(255), nullable=False)
     password = Column(VARCHAR(255), nullable=False)
     game_date = Column(Date, nullable=True)
+    start_time = Column(DateTime, nullable=True)
     goal_minute = Column(Integer, nullable=False)
     break_start_time = Column(DateTime, nullable=True)
     break_end_time = Column(DateTime, nullable=True)
