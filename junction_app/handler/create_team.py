@@ -24,6 +24,8 @@ def lambda_handler(event: dict, context):
 
     team = TeamModel(team_name, password, goal_minute)
     session.add(team)
+    session.commit()
+
     session.add(UserTeamMappingModel(user_id, team.team_id))
     session.commit()
 

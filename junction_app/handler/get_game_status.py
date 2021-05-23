@@ -45,7 +45,7 @@ def lambda_handler(event: dict, context):
 
     return response(200, {
         "team_name": team.team_name,
-        "start_time": team.start_time,
+        "start_time": team.start_time.isoformat() if team.start_time is not None else None,
         "user_names": [user.username for user in users],
         "all_cards": team_count,
         "my_cards": my_count

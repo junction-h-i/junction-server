@@ -16,7 +16,7 @@ def lambda_handler(event: dict, context):
     if team_name is None and user_id is None:
         return response(400)
     user_id_from_token = get_user_id_from_header(event.get("headers", {}))
-    if user_id_from_token != user_id:
+    if user_id_from_token is None:
         return response(403)
 
     session = Session()
@@ -40,9 +40,9 @@ def lambda_handler(event: dict, context):
         "goal_focus_minute": card.goal_focus_minute,
         "color": card.color,
         "content": card.content,
-        "start_time": card.start_time,
-        "progress_status": card.process_status,
+        "start_time": card.start_time.isoformat() if card.start_time is not None else None,
+        "progress_status": card.progress_status,
         "username": user.username,
-    } for card, user in query.all()]
+    } for user, card in query.all()]
 
     return response(200, {"cards": result})
