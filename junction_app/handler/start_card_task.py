@@ -19,10 +19,6 @@ def lambda_handler(event: dict, context):
     session = Session()
     card: CardModel = session.query(CardModel).filter(
         CardModel.card_id == card_id
-    ).filter(
-        CardModel.user_id == user_id
-    ).filter(
-        CardModel.progress_status == "TODO"
     ).one_or_none()
     if card is None:
         return response(404, {"message": "wrong card id or user id"})
