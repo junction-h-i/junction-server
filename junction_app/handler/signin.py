@@ -25,6 +25,6 @@ def lambda_handler(event: dict, context):
     if user is None:
         return response(400)
 
-    access_token = jwt.encode({"user_id": user.user_id}, SECRET_KEY, algorithm="HS256")
+    access_token = jwt.encode({"user_id": user.user_id}, SECRET_KEY, algorithm="HS256").decode('utf-8')
 
     return response(201, {"access_token": access_token})
